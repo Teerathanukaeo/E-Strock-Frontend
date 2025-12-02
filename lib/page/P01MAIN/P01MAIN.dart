@@ -537,7 +537,7 @@ class _P01MAINState extends State<P01MAIN> {
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                             child: Image.asset(
-                                              'images/${item.Mat}.png',
+                                              'assets/images/${item.Mat}.png',
                                               fit: BoxFit.cover,
                                               errorBuilder:
                                                   (context, error, stackTrace) {

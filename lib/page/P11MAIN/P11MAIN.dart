@@ -94,7 +94,7 @@ class _P11MAINState extends State<P11MAIN> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.asset(
-                                    'images/${item.Mat}.png',
+                                    'assets/images/${item.Mat}.png',
                                     fit: BoxFit.cover,
                                     errorBuilder: (_, __, ___) =>
                                         Center(child: Icon(Icons.broken_image)),
