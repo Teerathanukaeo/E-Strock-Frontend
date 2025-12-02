@@ -29,7 +29,7 @@ String serverG = 'http://172.23.10.51:15152/';
 
 String serverSARS = 'http://172.23.10.51:5000';
 String serverSARMAIN = 'http://172.23.10.51:1885';
-String serversparepart = 'http://127.0.0.1:3005/';
+String serversparepart = 'http://172.23.10.168:3007/';
 
 class serverNG {
   // static String BP12 = 'http://127.0.0.1:2600';
