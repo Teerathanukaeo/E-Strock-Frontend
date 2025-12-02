@@ -56,9 +56,12 @@ class P01DATA_Bloc extends Bloc<P01DATA_Event, List<P01MAINclass>> {
       input = databuff;
       List<P01MAINclass> outputdata = input.map((data) {
         return P01MAINclass(
-          CAL_1G_NO1: savenull(data['Mat']),
-          CAL_1G_NO2: savenull(data['Name']),
-          CAL_1G_NO3: savenull(data['Quantity']),
+          Mat: savenull(data['Mat']),
+          Name: savenull(data['Name']),
+          Volume: savenull(data['Quantity']),
+          Storage: savenull(data['Storage']),
+          Safetystock: savenull(data['SafetyStock']),
+          Change: savenull(data['Change']),
         );
       }).toList();
 
@@ -72,37 +75,17 @@ class P01DATA_Bloc extends Bloc<P01DATA_Event, List<P01MAINclass>> {
 
   Future<void> _P01DATA_GET2(
       List<P01MAINclass> toAdd, Emitter<List<P01MAINclass>> emit) async {
-    // List<P01MAINclass> output = [];
+    List<P01MAINclass> output = [];
     //-------------------------------------------------------------------------------------
-    // var input = dummydatainput2;
-
-    // List<P01MAINclass> outputdata = input
-    //     .where((data) =>
-    //         data['location'] == 'ESIE1' &&
-    //         data['plant'] == 'YES' &&
-    //         data['step01'] == 'YES')
-    //     .map((data) {
-    //   return P01MAINclass(
-    //     PLANT: savenull(data['plant']),
-    //     ORDER: savenull(data['order']),
-    //     MAT: savenull(data['mat']),
-    //     LOCATION: savenull(data['location']),
-    //     LOT: savenull(data['lot']),
-    //     CUSTOMER: savenull(data['customer']),
-    //     PARTNO: savenull(data['partno']),
-    //     PARTNAME: savenull(data['partname']),
-    //     STEP01: savenull(data['step1']),
-    //     STEP02: savenull(data['step2']),
-    //     STEP03: savenull(data['step3']),
-    //     STEP04: savenull(data['step4']),
-    //     STEP05: savenull(data['step5']),
-    //     STEP06: savenull(data['step6']),
-    //     STEP07: savenull(data['step7']),
-    //     STEP08: savenull(data['step8']),
-    //     STEP09: savenull(data['step9']),
-    //   );
-    // }).toList();
-
+    final response = await Dio().post(
+      "${serversparepart}E_StockTemp",
+      data: {
+        "Mat": P01VAR.Mat,
+        "Volume": P01VAR.Volume,
+        // "Customer": P01VAR.Customer,
+        // "Remark": P01VAR.Remark,
+      },
+    );
     // output = outputdata;
     // emit(output);
   }
@@ -148,35 +131,37 @@ class P01DATA_Bloc extends Bloc<P01DATA_Event, List<P01MAINclass>> {
 }
 
 class P01MAINclass {
-  P01MAINclass(
-      {this.DATETIME = '',
-      this.CAL_1G_NO1 = '',
-      this.CAL_1G_NO2 = '',
-      this.CAL_1G_NO3 = '',
-      this.CAL_1G_AVERAGE = '',
-      this.CAL_50G_NO1 = '',
-      this.CAL_50G_NO2 = '',
-      this.CAL_50G_NO3 = '',
-      this.CAL_50G_AVERAGE = '',
-      this.CAL_100G_NO1 = '',
-      this.CAL_100G_NO2 = '',
-      this.CAL_100G_NO3 = '',
-      this.CAL_100G_AVERAGE = '',
-      this.CAL_200G_NO1 = '',
-      this.CAL_200G_NO2 = '',
-      this.CAL_200G_NO3 = '',
-      this.CAL_200G_AVERAGE = '',
-      this.CHECK_BY = '',
-      this.APPROVE_BY = '',
-      this.STATUS = ''});
+  P01MAINclass({
+    this.Mat = '',
+    this.Name = '',
+    this.Volume = '',
+    this.Customer = '',
+    this.Storage = '',
+    this.Safetystock = '',
+    this.Change = '',
+    this.CAL_50G_NO3 = '',
+    this.CAL_50G_AVERAGE = '',
+    this.CAL_100G_NO1 = '',
+    this.CAL_100G_NO2 = '',
+    this.CAL_100G_NO3 = '',
+    this.CAL_100G_AVERAGE = '',
+    this.CAL_200G_NO1 = '',
+    this.CAL_200G_NO2 = '',
+    this.CAL_200G_NO3 = '',
+    this.CAL_200G_AVERAGE = '',
+    this.CHECK_BY = '',
+    this.APPROVE_BY = '',
+    this.STATUS = '',
+    this.count = 0,
+  });
 
-  String DATETIME;
-  String CAL_1G_NO1;
-  String CAL_1G_NO2;
-  String CAL_1G_NO3;
-  String CAL_1G_AVERAGE;
-  String CAL_50G_NO1;
-  String CAL_50G_NO2;
+  String Mat;
+  String Name;
+  String Volume;
+  String Customer;
+  String Storage;
+  String Safetystock;
+  String Change;
   String CAL_50G_NO3;
   String CAL_50G_AVERAGE;
   String CAL_100G_NO1;
@@ -190,6 +175,7 @@ class P01MAINclass {
   String CHECK_BY;
   String APPROVE_BY;
   String STATUS;
+  int count;
 }
 
 String savenull(input) {

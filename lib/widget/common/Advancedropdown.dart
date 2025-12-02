@@ -90,9 +90,8 @@ class _AdvanceDropDownState extends State<AdvanceDropDown> {
             color: widget.isEnable ?? false
                 ? Color(0xffededed)
                 : widget.BgCO ?? Colors.white,
-            border: Border.all(color: widget.borderCO ?? Colors.blueAccent),
-            borderRadius:
-                BorderRadius.all(Radius.circular(widget.borderRaio ?? 8.0)),
+            border: Border.all(color: widget.borderCO ?? Colors.grey),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
             padding: EdgeInsetsDirectional.only(

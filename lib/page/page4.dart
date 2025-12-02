@@ -16,10 +16,31 @@ class Page4Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 100,
-        width: 100,
-        color: Colors.red,
-        child: const Text("PAGE 4"),
+        height: 120,
+        width: 240,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 4,
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: const Center(
+          child: Text(
+            "Spare part Controller",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
     );
   }

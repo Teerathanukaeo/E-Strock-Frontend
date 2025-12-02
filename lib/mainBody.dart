@@ -100,13 +100,27 @@ class MainBody extends StatelessWidget {
     MainBodyContext = context;
 
     return Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.transparent,
-          backgroundColor: const Color(0xFF0b1327),
-          actions: <Widget>[App_Bar()],
-        ),
-        drawer: MainMenu(),
-        body: page);
+      // appBar: AppBar(
+      //   shadowColor: Colors.transparent,
+      //   backgroundColor: const Color(0xFF0b1327),
+      //   actions: <Widget>[App_Bar()],
+      // ),
+      body: Row(
+        children: [
+          // Menu ด้านซ้าย (คงอยู่ตลอด)
+          // Container(
+          //   width: 250,
+          //   color: Colors.white,
+          //   child: MainMenu(), // เปลี่ยนจาก drawer มาไว้ตรงนี้
+          // ),
+
+          // ส่วนแสดงเนื้อหา (page)
+          Expanded(
+            child: page,
+          ),
+        ],
+      ),
+    );
   }
 }
 

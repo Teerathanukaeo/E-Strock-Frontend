@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/BlocEvent/LoginEvent.dart';
 import '../../mainBody.dart';
 import '../../page/page1.dart';
+import '../../page/page12.dart';
 import '../../page/page2.dart';
 import '../../page/page3.dart';
 import '../../page/page4.dart';
@@ -29,7 +30,7 @@ class _MainMenuState extends State<MainMenu> {
       height: (MediaQuery.of(context).size.height),
       // width: MediaQuery.of(context).size.width,
       width: 200,
-      color: const Color(0xff0b1327),
+      color: Colors.white,
       //color: Colors.red,
       child: ListView(
         children: [
@@ -48,65 +49,94 @@ class Data_Menu_mainmenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center, //Axis-Y
-      crossAxisAlignment: CrossAxisAlignment.center, //Axis-X
-
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 20,
+        const SizedBox(height: 20),
+
+        // ปุ่มเมนู
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: buildMenuTile(
+            icon: Icons.build, // 🔧 ไอคอนของ Sparepart
+            label: "Sparepart",
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Page1()));
+            },
+          ),
         ),
-        Align(
-            alignment: Alignment.center,
-            child: Container(
-                height: 40,
-                width: 180,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.all(1),
-                  child: Container(
-                    height: 35,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/logo_tpk.png"),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                  ),
-                ))),
-        menu_normal(
-          name: "Page1",
-          page: Page1(),
-          Lv: 1,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: buildMenuTile(
+            icon: Icons.history,
+            label: "History",
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Page12()),
+              );
+            },
+          ),
         ),
-        menu_normal(
-          name: "Page2",
-          page: Page2(),
-          Lv: 1,
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: buildMenuTile(
+            icon: Icons.logout, // 🚪 ไอคอนของ Logout
+            label: "Logout",
+            iconColor: Colors.red.shade300,
+            textColor: Colors.red.shade400,
+            onTap: () {
+              // handle logout
+            },
+          ),
         ),
-        menu_normal(
-          name: "Page3",
-          page: Page3(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Page4",
-          page: Page4(),
-          Lv: 1,
-        ),
-        menu_normal(
-          name: "Page5",
-          page: Page5(),
-          Lv: 5,
-        ),
-        menu_logout(
-          name: "Logout",
-        ),
-        const Divider(
-          color: Color(0x4dffffff),
-          height: 12,
+
+        const SizedBox(height: 16),
+        Divider(
+          color: Colors.grey.shade300,
+          thickness: 1,
+          indent: 20,
+          endIndent: 20,
         ),
       ],
+    );
+  }
+
+  Widget buildMenuTile({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+    Color iconColor = Colors.grey,
+    Color textColor = Colors.black87,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ListTile(
+        leading: Icon(icon, color: iconColor),
+        title: Text(
+          label,
+          style: TextStyle(
+            fontSize: 16,
+            color: textColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        trailing: Icon(Icons.arrow_forward_ios,
+            size: 16, color: Colors.grey.shade400),
+        onTap: onTap,
+      ),
     );
   }
 }
